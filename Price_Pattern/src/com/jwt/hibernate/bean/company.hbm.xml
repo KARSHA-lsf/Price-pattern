@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+ 
+<hibernate-mapping>
+   <class name="com.jwt.hibernate.bean.companydetails" table="cep_simulator">
+     <meta attribute="class-description">
+         This class contains the Company detail. 
+      </meta>
+      <id name="Date"  column="Date">
+         <generator class="assigned"/>
+      </id>
+      <property name="PERMNO" column="PERMNO" type="int"/>
+      <property name="PRC" column="PRC" type="double"/>
+      <property name="Pseudo_PRC" column="Pseudo_PRC" type="double"/>
+      <property name="Turnover" column="Turnover" type="double"/>
+      
+   </class>
+
+</hibernate-mapping>
