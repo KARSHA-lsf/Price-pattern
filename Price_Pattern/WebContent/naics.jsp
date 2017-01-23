@@ -56,8 +56,8 @@
           <li><a href="search.html"><i class="icon-search"></i><span>Search</span> </a> </li>
           <li class="active"><a href="naics.jsp"><i class="icon-list-alt"></i><span>Sectors</span> </a></li>
           <li><a href="aggregate.html"><i class="icon-bar-chart"></i><span>Daily Aggregate</span> </a></li>
-          <li><a href="help.html"><i class="icon-file-text"></i><span>Details</span> </a></li>
-          <li><a href="#"><i class="icon-user"></i><span>About</span> </a></li>
+          <li><a href="details.html"><i class="icon-file-text"></i><span>Details</span> </a></li>
+          <li><a href="about.html"><i class="icon-user"></i><span>About</span> </a></li>
         </ul>
       </div>
     </div>
@@ -86,24 +86,15 @@
 				Class.forName(prop.getProperty("dbdriver"));
 				Connection conn = DriverManager.getConnection(prop.getProperty("database"), prop.getProperty("dbuser"), prop.getProperty("dbpassword"));
 				Statement stmt = conn.createStatement();
-				Statement stmt2 = conn.createStatement();
 
-				String query1 = "SELECT * FROM naics";
+				String query1 = "SELECT NAICS, n.industryName,COUNT(DISTINCT PERMNO)as Number_of_company from ( SELECT PERMNO,SUBSTR(naics FROM 1 FOR 2) as NAICS FROM all_company_info )as a, naics n WHERE n.code=a.NAICS GROUP BY a.NAICS";
 				
 				try{
 					System.out.println("Query statement is " + query1);
 					ResultSet rset = stmt.executeQuery(query1);
 					
-					while(rset.next()){
-						int count = 0;
-						String query2 = "SELECT * FROM all_company_info WHERE NAICS like '"+rset.getString(1)+"%'";
-						ResultSet rset2 = stmt2.executeQuery(query2);
-						
-						while(rset2.next()){
-							count = count + 1;
-						}%>
-						
-						<a href="naicsGraph.jsp?naics=<%= rset.getString(1)%>" class="list-group-item list-group-item-action"><%= rset.getString(1) %> | <%= rset.getString(2) %><span class="badge"><%= count %></span></a>
+					while(rset.next()){%>
+						<a href="naicsGraph.jsp?naics=<%= rset.getString(1)%>" class="list-group-item list-group-item-action"><%= rset.getString(1) %> | <%= rset.getString(2) %><span class="badge"><%= rset.getString(3) %></span></a>
 					<%}
 				}catch(SQLException e){
 					System.out.println("errrrror" + e);
