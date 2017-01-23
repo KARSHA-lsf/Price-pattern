@@ -24,8 +24,6 @@
       <property name="PseudoPRC" column="PseudoPRC" type="double"/>
       <property name="PseudoPRCn" column="PseudoPRCn" type="double"/>
       <property name="Turnover" column="Turnover" type="double"/>
-      
-      <property name="SHROUT" column="SHROUT" type="int"/>
       <property name="VOL" column="VOL" type="int"/>
       <property name="RawVol" column="RawVol" type="int"/>
       

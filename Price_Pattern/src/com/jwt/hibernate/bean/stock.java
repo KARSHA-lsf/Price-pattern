@@ -2,19 +2,15 @@ package com.jwt.hibernate.bean;
 
 public class stock implements java.io.Serializable {
 	
-	private int 	PERMNO;
+	private int PERMNO;
 	private String 	date;
 	private double PRC;
 	private double RET;
-	private int SHROUT;
 	private int VOL;
 	private double PseudoPRC;
 	private double PseudoPRCn;
 	private int RawVol;
 	private double Turnover;
-	
-	
-	
 	public int getPERMNO() {
 		return PERMNO;
 	}
@@ -38,12 +34,6 @@ public class stock implements java.io.Serializable {
 	}
 	public void setRET(double rET) {
 		RET = rET;
-	}
-	public int getSHROUT() {
-		return SHROUT;
-	}
-	public void setSHROUT(int sHROUT) {
-		SHROUT = sHROUT;
 	}
 	public int getVOL() {
 		return VOL;
@@ -75,6 +65,10 @@ public class stock implements java.io.Serializable {
 	public void setTurnover(double turnover) {
 		Turnover = turnover;
 	}
+	
+	
+	
+	
 	
 	
 

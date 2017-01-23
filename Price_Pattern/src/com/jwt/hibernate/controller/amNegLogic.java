@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.hibernate.Session;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,7 +27,9 @@ public class amNegLogic {
 		amNegDAO amNegObj = new amNegDAO();
 		List<List<companydetails>> list = amNegObj.returnAmnegList(permno);
 		
-		List<AmNeg> amNegList =amNegObj.getPatternDetails(permno); 
+		List<AmNeg> amNegList =amNegObj.getPatternDetails(permno);
+		
+		amNegObj.closeSession();
 		
 		JSONArray jsonArray = new JSONArray();
 		

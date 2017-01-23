@@ -129,10 +129,16 @@ size:{
 	 height: 200
 },
 tooltip: {
+	//show: true,
 	contents: tooltip_contents
 	},
 	
-	
+	subchart: {
+        show: true,
+        size: {
+            height: 25
+          }
+    },
 grid: {
         y: {
             lines: [

@@ -8,7 +8,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,7 +22,7 @@ import com.jwt.hibernate.controller.aggregateController;
 
 public class aggregateDAO {
 	
-	public List<Aggregate> getDetails(){
+	public List<Aggregate> getDetails(int dd){
 		List<Aggregate> list = null;
 		
 		try {
@@ -30,9 +32,10 @@ public class aggregateDAO {
 		    Transaction transaction = session.beginTransaction();
             
  
-            //String Max="max";
-            Query<?> query = session.createQuery("from Aggregate");
-         
+           
+            Query<?> query = session.createQuery("from Aggregate where YEAR(DATE)=YEAR(' "+dd+ "-01-01 ') "); // here compare from date so i just embed 01 -01
+		    
+		  
             List<Aggregate> result = (List<Aggregate>) query.list();
                   
             

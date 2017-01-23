@@ -25,6 +25,7 @@ public class amNegDAO {
 			
 			    // 4. Starting Transaction
 			    Transaction transaction = session.beginTransaction();
+			    
 	public List<List<companydetails>> returnAmnegList(int permno){
 		List<List<companydetails>> list = null;
 		
@@ -57,6 +58,8 @@ public class amNegDAO {
             System.out.println("error");
         }
     	
+    	
+    
     	return list;
     }
 	
@@ -64,6 +67,11 @@ public class amNegDAO {
 		
 		   Query<?> query1 = session.createQuery("from AmNeg where PERMNO=' "+permno+" ' and pattern!=null");
            List<AmNeg> amNegList = (List<AmNeg>) query1.list();
+       	
+
+    		
+    	
+    	
            return amNegList;
 	}
 	
@@ -95,5 +103,9 @@ public class amNegDAO {
 		}
 		
 		return maximaRange;
+	}
+	
+	public void closeSession(){
+		session.close();
 	}
 }

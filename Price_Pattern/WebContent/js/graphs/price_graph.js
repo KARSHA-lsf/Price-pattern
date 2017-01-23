@@ -33,6 +33,8 @@ setTimeout(function () {
     	        },
     	        y2: {
                     show: true,
+                    max: 0.1,
+                    min: -0.1,
                     label:'Turnover'
                 }
             },
@@ -51,4 +53,8 @@ setTimeout(function () {
                 }
             }
         });
-    }, 500);
+        chart.hide(['Turnover'], {withLegend: true});
+    }
+
+, 500);
+

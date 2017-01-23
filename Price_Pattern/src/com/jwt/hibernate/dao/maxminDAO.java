@@ -86,6 +86,9 @@ public  class maxminDAO {
             System.out.println(e.getMessage());
             System.out.println("error");
         }
+    	finally{
+    		session.close();
+    	}
     	
     	return list;
     	
