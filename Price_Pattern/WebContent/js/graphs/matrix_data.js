@@ -27,8 +27,8 @@ for(var i = 0;i<minarr.length;i++){
 
 for(var i = 0;i<amNegarr.length;i++){
 	
-	var startTime = new Date(amNegarr[i][0]['Date']);
-	var endTime = new Date(amNegarr[i][amNegarr[i].length-1]['Date']);
+	var startTime = new Date(amNegarr[i].AMN[0]['Date']);
+	var endTime = new Date(amNegarr[i].AMN[amNegarr[i].length-1]['Date']);
 	
     
     var middleTime = new Date((startTime.getTime() + endTime.getTime()) / 2);
