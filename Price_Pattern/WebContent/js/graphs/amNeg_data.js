@@ -24,7 +24,7 @@
 
 arr = JSON.parse( arr); // Do not need to pass to a another array; 
 amNegarr=arr;
-console.log(arr[0].AMN[0]);
+console.log(arr[0].Region[0].d1);
 
 document.getElementById("count2").innerHTML = "AmNeg  Count  "; 
 document.getElementById("badges2").innerHTML = arr.length;
@@ -58,8 +58,8 @@ $('#p4').append(p4+'/'+arr.length);
 
 var i;
  for(i=0;i<arr.length;i++){
-	 //console.log("lll : "+arr[i].Region[0].d1);
-var chart=c3.generate({
+	// console.log("lll : "+arr[i].Region[0].d1 +" "+arr[i].Region[0].d2);
+var chart_amn=c3.generate({
 	bindto: document.getElementById('demoneg'+i),
 	    data: {                
 	        
@@ -105,11 +105,11 @@ var chart=c3.generate({
 	    	enabled: true,
 	  		rescale: true
 		},
-		regions: [
-		          {axis: 'x', start:  arr[i].Region[0].d1, end:  arr[i].Region[0].d2, class: 'regionX'},
-		         
+		/*regions: [
+		         // {axis: 'x', start:  arr[i].Region[0].d1, end:  arr[i].Region[0].d2, class: 'regionX'},
+		         {axis: 'x', start:  arr[i].Region[0].d1, end:  arr[i].Region[0].d2, class: 'regionX'},
 		          
-		      ],
+		      ],*/
 			
 	    bar: {
 	        width: {
@@ -118,6 +118,15 @@ var chart=c3.generate({
 	    }
 	    
 	});
+	for (var int = 0; int < arr[i].Region.length; int++) {
+		console.log("kk : "+arr[i].Region[int].d1+" "+arr[i].Region[int].d2);
+		chart_amn.regions.add(
+				{axis: 'x', start:  arr[i].Region[int].d2, end:  arr[i].Region[int].d1, class: 'regionX'}
+			);	
+	}
+	
+
+
  }
 }
 else{

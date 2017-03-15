@@ -1,5 +1,6 @@
 package com.jwt.hibernate.controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,13 +78,16 @@ public class amNegLogic {
 			//System.out.println("1 : "+AmMax_date+" 2:"+AmMin_date);
 			AmNegSlope amnS = new AmNegSlope();
 			ArrayList<String[]> arr = amnS.AmNeg_slope(permno,AmMax_date , AmMin_date);
-			JSONObject jsonObject_amn = new JSONObject();
+			
 			JSONArray j_amn_arr = new JSONArray();
 			for (int j = 0; j < arr.size(); j++) {
+				JSONObject jsonObject_amn = new JSONObject();
 				jsonObject_amn.put("Slope_id",arr.get(j)[0]);
 				jsonObject_amn.put("d1",arr.get(j)[1]);
 				jsonObject_amn.put("d2",arr.get(j)[2]);
 				j_amn_arr.put(jsonObject_amn);
+				//System.out.println("lll "+j_amn_arr.toString());
+				//System.out.println("oo :"+arr.get(j)[0]+" "+arr.get(j)[1]+" "+arr.get(j)[2]);
 			}
 			JSONObject jsonObject_t1 = new JSONObject();
 			jsonObject_t1.put("AMN",inerJsonArray );

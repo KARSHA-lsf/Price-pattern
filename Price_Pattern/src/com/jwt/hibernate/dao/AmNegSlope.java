@@ -25,7 +25,8 @@ public class AmNegSlope {
     
     public ArrayList<String[]> AmNeg_slope(int permno, String d1,String d2) {
     	String q = "SELECT rf.slope_id,dd.date as st_date, d2.date as end_date FROM amneg_result_final rf,dist_dates dd,dist_dates d2 WHERE dd.date BETWEEN '"+d1+"' and '"+d2+"' and permno = "+permno+" and dd.id = rf.date_id and d2.id+1 = date_id";
-	 	ArrayList<String[]> arr = new ArrayList<>(); 
+	 	//System.out.println(q);
+    	ArrayList<String[]> arr = new ArrayList<>(); 
     	Properties prop = new Properties();
 		InputStream input = null;
 
@@ -43,8 +44,9 @@ public class AmNegSlope {
 				
 					//System.out.println("Query statement is " + query1);
 					ResultSet rset = stmt.executeQuery(q);
-					String [] temp_arr = new String[3];
+					
 					while (rset.next()) {
+						String [] temp_arr = new String[3];
 						temp_arr[0] = rset.getString(1);
 						temp_arr[1] = rset.getString(2);
 						temp_arr[2] = rset.getString(3);
@@ -63,6 +65,7 @@ public class AmNegSlope {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 		
 		return arr;
