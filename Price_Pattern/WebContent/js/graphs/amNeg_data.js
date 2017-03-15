@@ -16,6 +16,7 @@
 	    async: false,
          cache: false,
 	    success: function (data) {
+	    	//console.log("AmNeg URL :"+'/Price_Pattern/getDetails/amNegLogic/'+ permno);
 	           arr=data;
 	    }
 	            });
@@ -23,15 +24,16 @@
 
 arr = JSON.parse( arr); // Do not need to pass to a another array; 
 amNegarr=arr;
+console.log(arr[0].Region[0].d1);
 
 document.getElementById("count2").innerHTML = "AmNeg  Count  "; 
 document.getElementById("badges2").innerHTML = arr.length;
 var p1=0,p2=0,p3=0,p4=0;
 if(arr.length>0){
 for(c=0;c<arr.length;c++){
-	  $('#parent2').append('<div class="col-md-4"><div class="page-header" align="center">AmNeg-'+(c+1)+'</br><div align="center">(pattern -'+arr[c][0]['pattern']+')</div><div id="circle" style="background-color:'+arr[c][0]['color']+';width:30px;height:30px;"></div></div><div id="demoneg'+ c +'"></div></div>');
+	  $('#parent2').append('<div class="col-md-4"><div class="page-header" align="center">AmNeg-'+(c+1)+'</br><div align="center">(pattern -'+arr[c].AMN[0]['pattern']+')</div><div id="circle" style="background-color:'+arr[c].AMN[0]['color']+';width:30px;height:30px;"></div></div><div id="demoneg'+ c +'"></div></div>');
 	  	
-	  switch(arr[c][0]['pattern']) {
+	  switch(arr[c].AMN[0]['pattern']) {
       case 'MmaxToMmin' :
      	p1=p1+1;
          break;
@@ -56,11 +58,12 @@ $('#p4').append(p4+'/'+arr.length);
 
 var i;
  for(i=0;i<arr.length;i++){
-var chart=c3.generate({
+	// console.log("lll : "+arr[i].Region[0].d1 +" "+arr[i].Region[0].d2);
+var chart_amn=c3.generate({
 	bindto: document.getElementById('demoneg'+i),
 	    data: {                
 	        
-	        json: arr[i],
+	        json: arr[i].AMN,
 	   
 	     hide: ['Date'],
 	        keys: {
@@ -101,7 +104,12 @@ var chart=c3.generate({
 	    zoom: {
 	    	enabled: true,
 	  		rescale: true
-			},
+		},
+		/*regions: [
+		         // {axis: 'x', start:  arr[i].Region[0].d1, end:  arr[i].Region[0].d2, class: 'regionX'},
+		         {axis: 'x', start:  arr[i].Region[0].d1, end:  arr[i].Region[0].d2, class: 'regionX'},
+		          
+		      ],*/
 			
 	    bar: {
 	        width: {
@@ -110,6 +118,15 @@ var chart=c3.generate({
 	    }
 	    
 	});
+	for (var int = 0; int < arr[i].Region.length; int++) {
+		console.log("kk : "+arr[i].Region[int].d1+" "+arr[i].Region[int].d2);
+		chart_amn.regions.add(
+				{axis: 'x', start:  arr[i].Region[int].d2, end:  arr[i].Region[int].d1, class: 'regionX'}
+			);	
+	}
+	
+
+
  }
 }
 else{
