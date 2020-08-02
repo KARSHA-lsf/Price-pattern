@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Naics</title>
+</head>
+<body>
+<script src="js/d3.js" charset="utf-8"></script>
+ <script src="js/eventDrops.js"></script>
+ <script src="js/jquery-2.1.4.min.js"></script> 
+ 
+  <h1>Event Drops Demo</h1>
+        <div id="eventdrops-demo" style="width: 100%;"></div>
+
+</body>
+<script>
+var data = [
+            { name: "http requests", data: [new Date('2014/09/15 13:24:54'), new Date('2014/09/15 13:25:03'), new Date('2014/09/15 13:25:05'), ...] },
+            { name: "SQL queries", data: [new Date('2014/09/15 13:24:57'), new Date('2014/09/15 13:25:04'), new Date('2014/09/15 13:25:04'), ...] },
+            { name: "cache invalidations", data: [new Date('2014/09/15 13:25:12'), ...] }
+          ];
+          
+          
+var eventDropsChart = d3.chart.eventDrops();
+d3.select('#eventdrops-demo')
+  .datum(data)
+  .call(eventDropsChart);
+</script>
+
+ 
+</html>

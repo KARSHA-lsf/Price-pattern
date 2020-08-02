@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+ 
+<hibernate-mapping>
+   <class name="com.jwt.hibernate.bean.mxmn" table="all_mxmn">
+     <meta attribute="class-description">
+         This class contains the Details about maxima and minima with sector based.
+      </meta>
+       <composite-id>
+            <key-property name="PERMNO" type="int">
+                <column name="PERMNO" />
+            </key-property>
+            <key-property name="date">
+                <column name="date" />
+            </key-property>
+            <key-property name="extremaType" >
+                <column name="extremaType" />
+            </key-property>
+            <generator class="assigned"/>
+        </composite-id>
+        
+      
+      <property name="NAICS" column="NAICS" type="int"/>
+      
+     
+    
+      
+   </class>
+
+</hibernate-mapping>

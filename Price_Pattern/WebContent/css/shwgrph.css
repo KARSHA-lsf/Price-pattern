@@ -1,0 +1,26 @@
+.panel-default>.panel-heading {
+background-color: #004d4d;
+color:white;
+border-color: #004d4d;
+}
+.c3-region.regionX {
+  fill : red;
+}
+
+.pre-scrollable{
+	    max-height: 490px;
+}
+
+.main{
+border-bottom: none;
+}
+
+.panel-default {
+  border-color: #004d4d;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: #004d4d;
+    border-color: #004d4d;

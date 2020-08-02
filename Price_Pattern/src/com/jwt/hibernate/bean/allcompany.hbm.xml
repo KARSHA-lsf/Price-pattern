@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+ 
+<hibernate-mapping>
+   <class name="com.jwt.hibernate.bean.Company" table="all_company_info">
+     <meta attribute="class-description">
+         This class contains the Company detail. 
+      </meta>
+      
+      <composite-id>
+		<key-property name="PERMNO" column="PERMNO"/>
+		<key-property name="COMNAM" column="COMNAM"/>
+		<key-property name="TSYMBOL" column="TSYMBOL"/>
+		<key-property name="NAICS" column="NAICS"/>
+	  </composite-id>      
+   </class>
+
+</hibernate-mapping>

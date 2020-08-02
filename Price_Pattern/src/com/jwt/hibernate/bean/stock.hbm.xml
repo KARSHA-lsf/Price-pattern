@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+ 
+<hibernate-mapping>
+   <class name="com.jwt.hibernate.bean.stock" table="stock_all">
+     <meta attribute="class-description">
+         This class contains the Details about all companies.
+      </meta>
+       <composite-id>
+            <key-property name="PERMNO" type="int">
+                <column name="PERMNO" />
+            </key-property>
+            <key-property name="date" type="string">
+                <column name="date" />
+            </key-property>
+            <generator class="assigned"/>
+        </composite-id>
+        
+      <property name="PRC" column="PRC" type="double"/>
+      <property name="RET" column="RET" type="double"/>
+      <property name="PseudoPRC" column="PseudoPRC" type="double"/>
+      <property name="PseudoPRCn" column="PseudoPRCn" type="double"/>
+      <property name="Turnover" column="Turnover" type="double"/>
+      <property name="VOL" column="VOL" type="int"/>
+      <property name="RawVol" column="RawVol" type="int"/>
+      
+      
+      
+   </class>
+
+</hibernate-mapping>

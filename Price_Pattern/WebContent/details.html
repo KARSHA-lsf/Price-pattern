@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Karsha - help</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+	rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/dashboard.css" rel="stylesheet">
+<link href="css/c3.css" rel="stylesheet">
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<style type="text/css">
+.logo {
+	width: 250px;
+	height: 150px;
+	border: 3px solid #73AD21;
+}
+
+.jumbotron p {
+	font-size: 16px;
+}
+</style>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="index.html">Karsha - Equity Price
+					Features</a>
+			</div>
+		</div>
+	</div>
+	<div class="subnavbar">
+		<div class="subnavbar-inner">
+			<div class="container">
+				<ul class="mainnav">
+					<li><a href="index.html"><i class="icon-home"></i><span>Home</span>
+					</a></li>
+					<li><a href="search.html"><i class="icon-search"></i><span>Search</span>
+					</a></li>
+					<li><a href="naics.jsp"><i class="icon-list-alt"></i><span>Sectors</span>
+					</a></li>
+					<li><a href="aggregate.html"><i class="icon-bar-chart"></i><span>Daily
+								Aggregate</span> </a></li>
+					<li class="active"><a href="help.html"><i
+							class="icon-file-text"></i><span>Details</span> </a></li>
+					<li><a href="about.html"><i class="icon-user"></i><span>About</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- /main -->
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h2>Data Source and PseudoPrice</h2>
+
+					<h5>
+						<b><u>PseudoPrice</u></b>
+					</h5>
+
+					<ul style="list-style-type: none">
+						<li>PseudoPrice computation : <strong>Given a return
+								value <i>RET<sub>d</sub></i> on some day d (including dividends
+								and splits) and an initial price <i>P<sub>d-1</sub></i> a pseudo
+								price can be computed as <i>P<sub>d</sub> = (1+RET<sub>d</sub>)
+									P<sub>d-1</sub></i> . We use <i>P<sub>0</sub> = Initial price
+									on January 1 2004
+							</i> to initialize the computation.
+						</strong></li>
+					</ul>
+					</br>
+					<h5>
+						<b><u>Data Source</u></b>
+					</h5>
+
+					<ul style="list-style-type: none">
+						<li>Data Source : <strong>WRDS S&P 500</strong></li>
+						<li>Interval : <strong>January 1 2004 to December 31
+								2015</strong></li>
+						<li>RET : <strong><a href="#" data-toggle="modal"
+								data-target="#myModal">Holding Period Return</a><strong></li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h2>Features: Locally Significant Minima (LMn), Maxima (LMx)
+						and Approximate Maximal Negative Slope (AMNeg)</h2>
+					<br>
+					<h5>
+						<b><u>For Maxima</u></b>
+					</h5>
+					<p style="font-size: 14px;">Pink area of the graphs are used to
+						represent maxima area. It means that area consists a maximum
+						point. Boundary values of the range are less than 1% (This value
+						can be changed according to requirements.) of its maximum value.
+						User can check that values moving mouse point on the graph.</p>
+					<img style="margin-bottom: 20px;" class="center-block"
+						src="img/max1.JPG" />
+
+
+
+					<h5>
+						<b><u>For Minima</u></b>
+					</h5>
+					<p style="font-size: 14px;">Same as maxima graphs. Pink area of
+						the graphs are used to represent minima area. It means that area
+						consists a minimum point. Boundary values of the range are greater
+						than 1% (This value can be changed according to requirements.) of
+						its minimum value.</p>
+					<img style="margin-bottom: 20px;" class="center-block"
+						src="img/min.JPG" />
+
+					<h2>AmNeg Graphs</h2>
+					<p style="font-size: 14px;">amNeg: Is the behaviour(slope) of
+						two consecutive maxima and a minima. (first value must be a
+						Maxima)</p>
+					<p style="font-size: 14px;">Use this table to identify the type
+						of Amaneg patterns.</p>
+					<img width="960" style="margin-bottom: 20px;" class="center-block"
+						src="img/amnegColors.JPG" />
+
+					<p style="font-size: 14px;">Window size of graphs are
+						different. First PRC/PseudoPRC value in the graph shows maximum
+						value of maxima and last PRC/PseudoPRC value in the graph shows
+						minimum value of minima. Users can check that values by moving
+						mouse pointer close to those points. Color dot represent the AmNeg
+						type.</p>
+
+					<img style="margin-bottom: 20px;" class="center-block"
+						src="img/amneg.JPG" />
+
+				</div>
+
+			</div>
+			
+			
+			
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h2>Daily aggregate graph</h2>
+					<br>
+					<ul style="list-style-type: none">
+						<li>Daily aggregate graph represents, daily aggregation of
+							all the companies for a particular day. It has all the gains and
+							losses of all the companies and all the calculations based on
+							market capitalization (Mcap) of each company.</li>
+						<li><strong><b>Caculation of Gain/Loss:</b></strong> Get the
+							value (Mcap = outstanding stocks * stock price) for a particular
+							day (from all the companies) and <strong><b><i>Substract</i></b></strong>
+							the value from the previous day Mcap.</li>
+						<li><u>This graph represents gains and losses of all the
+								companies as a one unite. (not individually)</u></li>
+					</ul>
+					<br>
+					<h5>
+						<b><u>Data Source</u></b>
+					</h5>
+
+					<ul style="list-style-type: none">
+						<li>Data Source : <strong>WRDS S&P 500</strong></li>
+						<li>Interval : <strong>January 2 2004 to December 31
+								2015</strong></li>
+						<!-- <li>RET : <strong><a href="#" data-toggle="modal"
+								data-target="#myModal">Holding Period Return</a><strong></li> -->
+					</ul>
+					<img width="960" style="margin-bottom: 20px;" class="center-block"
+						src="img/daily_aggregate.PNG" />
+				</div>
+			</div>
+			
+
+
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h2>Data analyzing method</h2>
+					<p>Details of all the companies were streamed to WSO2
+						CEP(Complex Event Processor) by creating a data flow.</p>
+					<img style="margin-bottom: 20px;" class="center-block"
+						src="img/flow.png" />
+
+					<p>Calculate the minimum points and maximum points of the
+						Pseudo prices using Siddhi query language.</p>
+					<ul>
+						<li>Separated all the pseudo prices regarding to companies.</li>
+						<li>Calculate the minima, maxima points using Kalman filter
+							which is an inbuilt function of the Siddhi language.</li>
+
+					</ul>
+
+					<h4>
+						<b>Siddhi query</b>
+					</h4>
+					<p style="margin-left: 50px; font-size: 13px; color: brown;">
+						partition with (meta_PERMNO of inputStream) <b>// Separate
+							price values regarding to the company</b><br> begin<br>
+						from inputStream #timeseries:kalmanMinMax(meta_PseudoPRC,
+						0.00001,0.0001, 20, 'minmax')<br> select meta_PERMNO,
+						meta_date, meta_RET, meta_SHROUT, meta_VOL, meta_RawVol,
+						meta_Turnover, <br>meta_PRC, meta_PseudoPRC, meta_PseudoPRCn,
+						0.00001 as meta_Overall_stddev, 0.0001 as <br>meta_Batch_stddev,
+						20 as meta_Window_size, extremaType<br> insert into
+						outputStream;<br> end;
+					</p>
+
+					<h4>
+						<b>Explanation</b>
+					</h4>
+					<p>Parameters which were used for the Kalman filter</p>
+
+					<ul>
+						<li>Overall standard deviation: 0.00001</li>
+						<li>Batch standard deviation: 0.0001</li>
+						<li>Window size: 20</li>
+					</ul>
+
+					<img width="450" style="margin-bottom: 20px;" class="center-block"
+						src="img/max.png" />
+
+				</div>
+
+			</div>
+			<!-- end of first jumbo -->
+
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h2>Find Companies using Company Tree</h2>
+
+					<p style="font-size: 13px;">All companies are represented by
+						company tree. According to the initial view of company tree
+						companies are categorized based on their NAICS code. First two
+						digit of a NAICS code represent the sector of a company.
+						Description of the sector is displayed by moving mouse pointer
+						close to a node or its text label (figure 1). When click on a node
+						or label it expands all companies related to that category. Then
+						user can find company by the details which are given in labels.
+						When click on the one of label (company name & other details), it
+						generates its price pattern graph (figure 2).</p>
+
+					<img style="margin-bottom: 20px;" class="center-block"
+						src="img/two.jpg" />
+					<p align="center">figure 1</p>
+					<img class="center-block" style="margin-bottom: 20px;"
+						src="img/three.jpg" />
+					<p align="center">figure 2</p>
+
+				</div>
+
+			</div>
+
+
+
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Holding Period Return</h4>
+						</div>
+						<div class="modal-body">
+							<p>A return is the change in the total value of an investment
+								in a common stock over some period of time per dollar of initial
+								investment. RET(I) is the return for a sale on day I. It is
+								based on a purchase on the most recent time previous to I when
+								the se curity had a valid price. Usually, this time is I - 1.
+								Returns are calculated as follows:</p>
+							<p>
+								<strong>For time t (a holding period), let:</strong>
+							</p>
+							<ul style="list-style-type: none">
+								<li>t? = time of last available price < t</li>
+								<li>r(t) = return on purchase at t?, sale at t</li>
+								<li>p(t) = last sale price or closing bid/ask average at
+									time t</li>
+								<li>d(t) = cash adjustment for t</li>
+								<li>f(t) = price adjustment factor for t</li>
+								<li>p(t?) = last sale price or closing bid/ask average at
+									time of last available price < t.</li>
+								<li>then,</li>
+							</ul>
+							<center>
+								<p style="font-size: 150%;">
+									<strong>r(t) = [ (p(t)f(t) + d(t)) / p(t') ] - 1</strong>
+								</p>
+							</center>
+							<p>t? is usually one period before t, but t? can be up to ten
+								periods before t if there are no valid prices2 in the interval.
+								A series of special return codes specify the reason a return is
+								missing.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div class="extra">
+		<div class="extra-inner">
+			<div class="container">
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /extra-inner -->
+	</div>
+	<!-- /extra -->
+	<div class="footer">
+		<div class="footer-inner">
+			<div class="container">
+				<div class="row">
+					<div class="span12">
+						&copy; 2016 <a href="#"> </a>
+					</div>
+					<!-- /span12 -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /footer-inner -->
+	</div>
+	<!-- /footer -->
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+
+</body>
+</html>

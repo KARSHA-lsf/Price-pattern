@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+ 
+ <hibernate-mapping>
+   <class name="com.jwt.hibernate.bean.Aggregate" table="mcap">
+     <meta attribute="class-description">
+         This class contains the details about daily aggregates.
+      </meta>
+      <id name="DATE"  column="date">
+         <generator class="assigned"/>
+      </id>
+      <property name="GAIN" column="gain" type="double"/>
+      <property name="LOSS" column="loss" type="double"/> 
+      <property name="DIFF_GAIN" column="diff_gain" type="double"/> 
+      <property name="DIFF_LOSS" column="diff_loss" type="double"/> 
+      <property name="max_count" column="maxima_count" type="int"/> 
+       <property name="min_count" column="minima_count" type="int"/> 
+      
+      
+   </class>
+
+</hibernate-mapping>

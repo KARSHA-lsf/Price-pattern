@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="../../css/style.css" />
+        <style type="text/css">
+        body {
+            font-family: verdana, sans-serif;
+        }
+        </style>
+    </head>
+    <body>
+        
+        <div style="text-align: center">
+            <label for="delimiter">Show time boundaries:</label>
+            <input name="delimiter" type="checkbox" checked="true" onchange="updateDelimiter()">
+            
+            <button onclick="graph(element)">Reset zoom</button>
+        </div>
+        <div id="chart_placeholder"></div>
+        <div style="text-align: center" id="legend"></div>
+        <div style="text-align: center" id="zoomEnd"></div>
+        <script src="../../node_modules/d3/d3.js"></script>
+        <script src="../../src/eventDrops.js"></script>
+        <script>
+            var chartPlaceholder = document.getElementById('chart_placeholder');
+            var names = ["Maxima", "AmNeg", "Minima"];
+            
+            var arr;
+            $.ajax({
+           	    url:  '/Price_Pattern/getDetails/testNaics38703/38703', //this is the url where json format is generate for graph visualization 
+           	    type: "GET",
+           	    dataType: 'html',
+           	    async: false,
+                    cache: false,
+           	    success: function (data) {
+           	           arr=data;
+           	    }
+           	            });
+            
+
+           arr = JSON.parse( arr); //
+         
+            var data = [];
+            var endTime = new Date("2015-12-31");
+            var oneMonth = 30 * 24 * 60 * 60 * 1000;
+            var startTime = new Date("2004-01-01");
+            var middleTime = startTime + ((endTime - startTime) / 2);
+
+
+          function createEvent (name) {
+                var event = {};
+                event.name = name;
+                event.dates = [];
+
+                //var max =  Math.floor(Math.random() * 20);
+               // document.write(max);
+               //var time=['2015-01-02','2015-01-12','2015-01-13','2015-01-15','2015-01-20'];
+             if(name=="Maxima"){
+                for (var j = 0; j <arr[0].Dates.length; j++) {
+                   // var time = Math.floor((Math.random() * oneMonth)) + startTime;
+                    //document.write(time+"\n");
+                    event.dates.push(new Date(arr[0].Dates[j]));
+                    
+                }
+             }
+             else  if(name=="AmNeg"){
+                 for (var j = 0; j <arr[1].Dates.length; j++) {
+                    // var time = Math.floor((Math.random() * oneMonth)) + startTime;
+                     //document.write(time+"\n");
+                     event.dates.push(new Date(arr[1].Dates[j]));
+                     
+                 }
+              }
+             else  if(name=="Minima"){
+                 for (var j = 0; j <arr[2].Dates.length; j++) {
+                    // var time = Math.floor((Math.random() * oneMonth)) + startTime;
+                     //document.write(time+"\n");
+                     event.dates.push(new Date(arr[2].Dates[j]));
+                     
+                 }
+              }
+             
+             
+               
+
+                return event;
+            }
+
+          for (var i = 0; i < 3; i++) {
+                data.push(createEvent(names[i]));
+            }
+
+
+
+             
+         
+
+            
+
+            var color = d3.scale.category20();
+
+            var locale = d3.locale({
+                "decimal": ".",
+                "thousands": ",",
+                "grouping": [3],
+                "currency": ["$", ""],
+                "dateTime": "%a %b %e %X %Y",
+                "date": "%m/%d/%Y",
+                "time": "%H:%M:%S",
+                "periods": ["AM", "PM"],
+                "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                "shortMonths": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            });
+
+var count=0;
+var t=0;
+
+            var graph = d3.chart.eventDrops()
+
+                .start(new Date(startTime))
+                .end(new Date(endTime))
+                .minScale(0.5)
+                .maxScale(100)
+                .locale(locale)
+                
+                .eventLineColor(function (datum, index) {
+            return color(index);
+        })
+
+                .eventColor(function (datum, index) {
+                   
+                
+                    
+                     
+                })
+
+                .width(1200)
+                .margin({ top: 100, left: 200, bottom: 0, right: 0 })
+                .axisFormat(function(xAxis) {
+                    xAxis.ticks(5);
+                })
+                .eventHover(function(el) {
+                    var series = el.parentNode.firstChild.innerHTML;
+                    var timestamp = d3.select(el).data()[0];
+                    
+                    var currentDate = timestamp
+                    var day = currentDate.getDate()
+                    var month = currentDate.getMonth() + 1
+                    var year = currentDate.getFullYear()
+                    
+                    document.getElementById('legend').innerHTML ="<b>" + year + "-" + month + "-" + day + "</b>";
+                })
+                .eventZoom(function (scale) {
+                    var limit = scale.domain();
+                    var period = parseInt((limit[1] - limit[0]) / (30 * 24) );
+                   // document.getElementById('zoomEnd').innerHTML = 'Zoomed on a period of "' + period + ' hours"';
+                });
+
+
+
+            var element = d3.select(chartPlaceholder).append('div').datum(data);
+            graph(element);
+
+            var updateDelimiter = function (value) {
+                graph.hasDelimiter(!graph.hasDelimiter())(element);
+            };
+
+            
+
+            
+
+        </script>
+    </body>
+</html>

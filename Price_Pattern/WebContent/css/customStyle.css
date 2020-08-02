@@ -1,0 +1,36 @@
+.node {
+	  cursor: pointer;
+	}
+	
+	.node circle {
+	  fill: #ebf9f8;
+	  stroke: #247b77;
+	  stroke-width: 1.5px;
+	}
+	
+	.node text {
+	  font: 10px sans-serif;
+	  
+	}
+	
+	.link {
+	  fill: none;
+	  stroke: #ccd0ed;
+	  stroke-width: 1.5px;
+	}
+	
+text:hover {
+	fill: #88ddd8;
+}
+		
+	
+#demo{
+	transition-duration: 1s;
+}
+
+#footer{
+	position: fix;
+  	margin-top: -180px; /* negative value of footer height */
+  	height: 180px;
+  	clear: both;
+}

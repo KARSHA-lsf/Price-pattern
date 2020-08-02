@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Code customized by Tharindu Madushanka, Software Engineer at Lanka Software Foundation--> 
+  <meta charset="utf-8">
+  <title>karsha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+          rel="stylesheet">
+  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/dashboard.css" rel="stylesheet">
+  
+  <!-- CSS files for D3 Tree -->
+  <link href="css/customStyle.css" rel="stylesheet">
+  
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+  <style type="text/css">
+	.logo {
+	    width: 250px;
+	    height: 150px;
+	    border: 3px solid #73AD21;
+	}
+  </style>
+  <style>		
+		.chart {
+		  shape-rendering: crispEdges;
+		}
+		.mini text {
+		  font: 9px sans-serif; 
+		}
+		.main text {
+		  font: 12px sans-serif;  
+		}		
+		.month text {
+		  text-anchor: start;
+		}
+		.todayLine {
+		  stroke: blue;
+		  stroke-width: 1.5;
+		}
+		.axis line, .axis path {
+		  stroke: black;
+		}
+		.miniItem {
+		  stroke-width: 6;  
+		}
+		.item {
+		  stroke: gray;
+		  fill: #ddd;
+		}
+		.brush .extent {
+		  stroke: gray;
+		  fill: blue;	
+		  fill-opacity: .165;
+		}
+</style>
+  
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+       <a class="brand" href="index.html">Project Name : Karsha - PRICE PATTERN</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <button onclick="draw_timeline()"> draw time line</button>
+    <div id="timelineMAX"></div>
+  </div>
+  
+
+
+
+<!-- /extra -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12"> &copy; 2016 <a href="#">
+          </a></div>
+        <!-- /span12 --> 
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /footer-inner --> 
+</div>
+<!-- /footer --> 
+<script src="js/jquery-2.1.4.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/d3.min.js"></script> 
+<script src="js/d3-timeline.js"></script> 
+<script src="js/custom_js/randomData.js"></script>
+<script src="js/custom_js/timeline_draw.js"></script> 
+ 
+
+
+
+</body>
+</html>

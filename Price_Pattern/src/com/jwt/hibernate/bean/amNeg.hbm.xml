@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+ 
+<hibernate-mapping>
+   <class name="com.jwt.hibernate.bean.AmNeg" table="amneg">
+     <meta attribute="class-description">
+         This class contains the Company detail. 
+      </meta>
+      <id name="id"  column="id">
+         <generator class="assigned"/>
+      </id>
+      <property name="PERMNO" column="PERMNO" />
+      <property name="dateMax" column="dateMax" />
+      <property name="dateMin" column="dateMin" />
+      <property name="pattern" column="pattern" />
+   </class>
+
+</hibernate-mapping>
